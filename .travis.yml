@@ -19,7 +19,7 @@ before_script: phpenv config-add myconfig.ini
 
 script:
   - php bin/console doctrine:migrations:migrate --no-interaction
-  - ./bin/phpunit
+  - php bin/phpunit
 
 # After a build, send email notification with the build results
 notifications:
