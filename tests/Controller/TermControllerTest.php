@@ -78,7 +78,7 @@ class TermControllerTest extends WebTestCase
         $this->assertEquals($searchTerm, $termSearchResult->getTerm());
         $this->assertNotNull($termSearchResult->getUpdated());
         $firstApiCallUpdateDateTime = $termSearchResult->getUpdated();
-        dump($firstApiCallUpdateDateTime);
+        
         /**
          * STEP 3
          *
