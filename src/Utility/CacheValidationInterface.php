@@ -3,7 +3,6 @@
 
 namespace App\Utility;
 
-
 interface CacheValidationInterface
 {
     /**

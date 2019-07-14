@@ -3,7 +3,6 @@
 
 namespace App\Service\TermSearch\Github;
 
-
 use MyCLabs\Enum\Enum;
 
 /**

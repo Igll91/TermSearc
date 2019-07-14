@@ -3,7 +3,6 @@
 
 namespace App\Service\TermScore;
 
-
 use App\Service\TermSearch\TermSearchInterface;
 use App\Utility\Result\AbstractResult;
 

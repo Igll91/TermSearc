@@ -159,7 +159,8 @@ class TermSearchResult
         return $this;
     }
 
-    public function getScoreWithDefaultPrecision() {
+    public function getScoreWithDefaultPrecision()
+    {
         return number_format($this->score, 2);
     }
 }

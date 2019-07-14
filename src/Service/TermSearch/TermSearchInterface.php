@@ -3,7 +3,6 @@
 
 namespace App\Service\TermSearch;
 
-
 use App\Utility\Result\AbstractResult;
 
 interface TermSearchInterface

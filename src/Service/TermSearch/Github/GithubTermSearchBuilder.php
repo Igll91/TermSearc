@@ -3,7 +3,6 @@
 
 namespace App\Service\TermSearch\Github;
 
-
 class GithubTermSearchBuilder
 {
     private $searchArea = GithubSearchArea::ISSUE;
@@ -46,7 +45,8 @@ class GithubTermSearchBuilder
         return $this->timeout;
     }
 
-    public function build(): GithubTermSearch {
+    public function build(): GithubTermSearch
+    {
         return new GithubTermSearch($this);
     }
 }

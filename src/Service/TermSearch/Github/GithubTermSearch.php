@@ -3,7 +3,6 @@
 
 namespace App\Service\TermSearch\Github;
 
-
 use App\Service\TermSearch\TermSearchInterface;
 use App\Utility\Result\AbstractResult;
 use App\Utility\Result\Failure;
@@ -12,7 +11,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\HttpFoundation\Response;
-
 
 class GithubTermSearch implements TermSearchInterface
 {
@@ -56,7 +54,7 @@ class GithubTermSearch implements TermSearchInterface
         try {
             $response = $client->get($this->getRelativeUri($term));
 
-            if($response->getStatusCode() == Response::HTTP_OK) {
+            if ($response->getStatusCode() == Response::HTTP_OK) {
                 $jsonBody = json_decode($response->getBody()->getContents(), true);
 
                 return new Success((float)$jsonBody['total_count']);
@@ -75,7 +73,8 @@ class GithubTermSearch implements TermSearchInterface
      * @param string $term Term to be searched.
      * @return string Relative URI path.
      */
-    private function getRelativeUri(string $term): string {
+    private function getRelativeUri(string $term): string
+    {
         return $this->searchArea . "?q=" . $term;
     }
 }

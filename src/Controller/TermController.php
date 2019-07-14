@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\TermSearchResult;
 use App\Service\TermScore\TermScoreInterface;
 use App\Service\TermSearch\Github\GithubTermSearchBuilder;
@@ -28,10 +27,11 @@ class TermController extends AbstractFOSRestController
      * @Get("/score/{term}")
      * @View(serializerGroups={"essential"})
      */
-    public function getScore(TermScoreInterface $termScore, ValidatorInterface $validator, $term) {
+    public function getScore(TermScoreInterface $termScore, ValidatorInterface $validator, $term)
+    {
         // Validate search term length before using any other resources
         $validationResult = $validator->validatePropertyValue(TermSearchResult::class, 'term', $term);
-        if($validationResult->count() != 0) {
+        if ($validationResult->count() != 0) {
             return ['error' => $validationResult[0]->getMessage()];
         }
 
@@ -39,7 +39,7 @@ class TermController extends AbstractFOSRestController
         $termSearchResult   = $entityManager->getRepository(TermSearchResult::class)->getOrCreateByTerm($term); /** @var $termSearchResult TermSearchResult */
 
         // Update element if new entry or cache time limit passed
-        if($termSearchResult->getId() == null || !$this->cacheValidation->isValid($termSearchResult)) {
+        if ($termSearchResult->getId() == null || !$this->cacheValidation->isValid($termSearchResult)) {
             $builder        = new GithubTermSearchBuilder();
             $scoreInterface = $builder->build();
             $score          = $termScore->getScore($term, $scoreInterface);

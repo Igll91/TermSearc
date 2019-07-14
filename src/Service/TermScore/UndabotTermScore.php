@@ -3,7 +3,6 @@
 
 namespace App\Service\TermScore;
 
-
 use App\Service\TermSearch\TermSearchInterface;
 use App\Utility\Result\AbstractResult;
 use App\Utility\Result\Success;
@@ -44,7 +43,7 @@ class UndabotTermScore implements TermScoreInterface
         foreach ($appendixes as $key => &$value) {
             $result = $search->getTermCount($term . " " . $key);
 
-            if(!$result->isSuccessful()) {
+            if (!$result->isSuccessful()) {
                 return $result;
             }
 
@@ -54,7 +53,7 @@ class UndabotTermScore implements TermScoreInterface
         $positiveResult = (float) $appendixes[self::POSITIVE_TERM_APPENDIX];
         $totalResult    = $positiveResult + (float)$appendixes[self::NEGATIVE_TERM_APPENDIX];
 
-        if($totalResult == 0) {
+        if ($totalResult == 0) {
             return new Success(0);
         }
 

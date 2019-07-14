@@ -29,7 +29,8 @@ abstract class AbstractResult
 
     abstract public function isSuccessful(): bool;
 
-    public function get() {
+    public function get()
+    {
         return $this->value;
     }
 }
