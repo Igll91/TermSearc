@@ -14,7 +14,7 @@ and negative result in a range from 0 to 10.
 parameter **term** can be any string from 1 to 100 characters length.
 
 ***
-######Example1: Successful API call
+###### Example1: Successful API call
 
 Link to example: http://localhost:8000/score/test
 
@@ -25,7 +25,7 @@ Output:
 }
 
 ***
-######Example2: API call validation fail
+###### Example2: API call validation fail
 
 Link to example: http://localhost:8000/score/VQCFumEfKvWZFJYJQFQcjVTVeqUgpeeepupvAYLkBSeDGncYPMrvpmbriPqAjLZFCxRVkYmcSjNWiZHdaaccCUJTaBcgukeDdReRnDTByHPVAGvLzueYGJkaJxPBgGucUamVADjfVVawAjXeSWKwfwaCKjPVaFrecuHJRznpUGexvUDmuEtMBwMEdkRzSjkxtNAxfhGfpuAPXEFFbwYyPQSerHGzFJDdKc
 
