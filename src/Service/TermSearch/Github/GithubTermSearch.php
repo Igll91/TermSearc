@@ -27,7 +27,7 @@ class GithubTermSearch implements TermSearchInterface
     private $apiVersion;
 
     /**
-     * @var int
+     * @var float
      */
     private $timeout;
 

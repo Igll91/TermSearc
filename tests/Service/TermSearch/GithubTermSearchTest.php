@@ -18,7 +18,7 @@ class GithubTermSearchTest extends TestCase
      */
     public function testTimeout() {
         $githubTermSearchBuilder    = new GithubTermSearchBuilder();
-        $githubTermSearchBuilder->setTimeout(1);
+        $githubTermSearchBuilder->setTimeout(0.1);
 
         $result = $this->getSearchResult("symfony", $githubTermSearchBuilder);
 
