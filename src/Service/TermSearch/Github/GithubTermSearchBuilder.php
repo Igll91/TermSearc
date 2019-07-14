@@ -7,7 +7,7 @@ class GithubTermSearchBuilder
 {
     private $searchArea = GithubSearchArea::ISSUE;
     private $apiVersion = GithubApiVersion::V3;
-    private $timeout    = 2; // In seconds
+    private $timeout    = 2.0; // In seconds
 
     public function setSearchArea(string $searchArea): GithubTermSearchBuilder
     {
@@ -23,7 +23,7 @@ class GithubTermSearchBuilder
         return $this;
     }
 
-    public function setTimeout(int $timeout): GithubTermSearchBuilder
+    public function setTimeout(float $timeout): GithubTermSearchBuilder
     {
         $this->timeout = $timeout;
 
@@ -40,7 +40,7 @@ class GithubTermSearchBuilder
         return $this->apiVersion;
     }
 
-    public function getTimeout(): int
+    public function getTimeout(): float
     {
         return $this->timeout;
     }

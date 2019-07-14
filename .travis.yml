@@ -1,0 +1,23 @@
+language: php
+php:
+  - '7.3'
+sudo: false
+env:
+  global:
+    - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
+
+before_install:
+  - composer self-update
+  - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
+install:
+  - composer install --no-interaction
+
+before_script: phpenv config-add myconfig.ini
+
+script:
+  - php bin/console doctrine:migrations:migrate --no-interaction
+  - php bin/phpunit --stop-on-error
+
+# After a build, send email notification with the build results
+notifications:
+  email: bfsilviovuk@gmail.com
