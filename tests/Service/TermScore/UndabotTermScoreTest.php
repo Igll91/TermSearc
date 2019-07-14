@@ -39,6 +39,13 @@ class UndabotTermScoreTest extends TestCase
     }
 
     /**
+     * Test getScore function with zero result mocked successful GITHUB API results.
+     */
+    public function testGetScoreSuccessZero() {
+        $this->executeGetScoreSuccessfulTest(0, 0, 0);
+    }
+
+    /**
      * * Test getScore function with mocked one successful and one unsuccessful GITHUB API result.
      */
     public function testGetScoreFailure() {

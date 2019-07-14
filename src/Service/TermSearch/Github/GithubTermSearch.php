@@ -11,6 +11,7 @@ use App\Utility\Result\Success;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class GithubTermSearch implements TermSearchInterface
@@ -39,6 +40,9 @@ class GithubTermSearch implements TermSearchInterface
         $this->timeout    = $builder->getTimeout();
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getTermCount(string $term): AbstractResult
     {
         $client = new Client([
@@ -49,31 +53,21 @@ class GithubTermSearch implements TermSearchInterface
                 ]
         ]);
 
-        // handle errors
-
         try {
             $response = $client->get($this->getRelativeUri($term));
+
+            if($response->getStatusCode() == Response::HTTP_OK) {
+                $jsonBody = json_decode($response->getBody()->getContents(), true);
+
+                return new Success((float)$jsonBody['total_count']);
+            } else {
+                return new Failure($response->getStatusCode());
+            }
         } catch (ConnectException $ex) {
-            //TODO: log exception
-            return new Failure("Connection exception, please try again."); // TODO: translate error message
+            return new Failure("Connection exception, please try again.");
         } catch (RequestException $ex) {
-            dump($ex);
-            //TODO: log exception
             return new Failure($ex->getResponse()->getReasonPhrase());
         }
-
-        $jsonBody = json_decode($response->getBody()->getContents(), true);
-
-        dump($client->getConfig());
-
-        dump($response->getStatusCode());
-        dump($jsonBody);
-        dump($response->getHeaders());
-
-        // IF STATUS CODE 200 AND json decode passed
-
-        //TODO: handle GITHUB curl
-        return new Success((float)$jsonBody['total_count']);
     }
 
     /**

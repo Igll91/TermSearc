@@ -54,6 +54,10 @@ class UndabotTermScore implements TermScoreInterface
         $positiveResult = (float) $appendixes[self::POSITIVE_TERM_APPENDIX];
         $totalResult    = $positiveResult + (float)$appendixes[self::NEGATIVE_TERM_APPENDIX];
 
+        if($totalResult == 0) {
+            return new Success(0);
+        }
+
         return new Success($positiveResult / $totalResult * self::MAX_VALUE_REPRESENTATION);
     }
 }
