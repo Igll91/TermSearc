@@ -9,10 +9,7 @@ env:
 before_install:
   - composer self-update
   - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
-  - '[[ "$ACTION" == "install" ]] || composer install'
 install:
-  # install or update
-  - composer self-update
   - composer install --no-interaction
 
 before_script: phpenv config-add myconfig.ini
