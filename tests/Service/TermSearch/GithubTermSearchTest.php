@@ -44,23 +44,6 @@ class GithubTermSearchTest extends TestCase
         $this->assertEquals(new Failure("Unprocessable Entity"), $result);
     }
 
-    /**
-     * Validate invalid size query will return Failure object.
-     */
-    public function testLimitation() {
-        $searchTerm                 = "symfony";
-        $githubTermSearchBuilder    = new GithubTermSearchBuilder();
-        $githubTermSearch           = new GithubTermSearch($githubTermSearchBuilder);
-
-        for($i = 0; $i < self::GITHUB_API_LIMIT; $i++) {
-            $githubTermSearch->getTermCount($searchTerm);
-        }
-
-        $result = $githubTermSearch->getTermCount($searchTerm);
-
-        $this->assertEquals(new Failure("Forbidden"), $result);
-    }
-
     private function getSearchResult(string $searchTerm, GithubTermSearchBuilder $githubTermSearchBuilder) {
         $githubTermSearch = $githubTermSearchBuilder->build();
 
